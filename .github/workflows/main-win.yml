@@ -1,4 +1,4 @@
-name: CI
+name: Win
 
 on: 
   workflow_dispatch:
@@ -21,9 +21,18 @@ jobs:
        ./setup.ps1
     - name: OAuth with CRD
       if: ${{ github.event.inputs.code }}
-      run: ${{ github.event.inputs.code }} ${{ github.event.inputs.pin }}
+      run: ${{ github.event.inputs.code }} -pin=${{ github.event.inputs.pin }}
     - name: Download Run in Background Process
       run: Invoke-WebRequest https://raw.githubusercontent.com/AloneGuru/Alone-VM/main/alive.ps1 -OutFile alive.ps1
+    - name: Running CRD in Background
+      if: ${{ github.event.inputs.code }}
+      run: ./alive.ps1
+    - name: Running CRD in Background
+      if: ${{ github.event.inputs.code }}
+      run: ./alive.ps1
+    - name: Running CRD in Background
+      if: ${{ github.event.inputs.code }}
+      run: ./alive.ps1
     - name: Running CRD in Background
       if: ${{ github.event.inputs.code }}
       run: ./alive.ps1
