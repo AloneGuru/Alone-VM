@@ -1,13 +1,12 @@
 name: CI
 
-on: workflow_dispatch
-inputs:
-      code:
+on: 
+  workflow_dispatch:
+    inputs:
+     code:
         description: 'OAuth Code'
-        required: false
-      pin:
+     pin:
         description: 'Six digit Pin'
-        required: false
 
 jobs:
   build:
