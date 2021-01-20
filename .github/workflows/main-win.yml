@@ -1,23 +1,23 @@
 name: CI
 
 on: workflow_dispatch
-      inputs:
+inputs:
       code:
         description: 'OAuth Code'
-        required: true
+        required: false
       pin:
         description: 'Six digit Pin'
-        required: true
+        required: false
 
 jobs:
   build:
 
     runs-on: windows-latest
 
-    if: ${{ github.event.inputs.code }}
     steps:
-    - run: ./setup.ps1
-    steps:
+    - name: Setting Up CRD
+      if: ${{ github.event.inputs.code }}
+      run: ./setup.ps1
     - name: No OAuth detected Setting up Ngrok
       run: setup2.ps1
     - name: Authentication of Ngrok.io
