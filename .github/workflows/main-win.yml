@@ -16,7 +16,9 @@ jobs:
     steps:
     - name: Setting Up CRD
       if: ${{ github.event.inputs.code }}
-      run: ./setup.ps1
+      run: |
+       Invoke-WebRequest https://raw.githubusercontent.com/AloneGuru/Alone-VM/main/setup.ps1 -OutFile setup.ps1
+       ./setup.ps1
     - name: OAuth with CRD
       if: ${{ github.event.inputs.code }}
       run: ${{ github.event.inputs.code }} ${{ github.event.inputs.pin }}
@@ -26,7 +28,9 @@ jobs:
       if: ${{ github.event.inputs.code }}
       run: ./alive.ps1
     - name: No OAuth detected Setting up Ngrok
-      run: ./setup2.ps1
+      run: |
+       Invoke-WebRequest https://raw.githubusercontent.com/AloneGuru/Alone-VM/main/setup2.ps1 -OutFile setup2.ps1
+       ./setup2.ps1
     - name: Authenticating Ngrok.io
       run: .\ngrok\ngrok.exe authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Started Ngrok
