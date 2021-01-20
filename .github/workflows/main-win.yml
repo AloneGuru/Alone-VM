@@ -27,15 +27,6 @@ jobs:
     - name: Running CRD in Background
       if: ${{ github.event.inputs.code }}
       run: ./alive.ps1
-    - name: Running CRD in Background
-      if: ${{ github.event.inputs.code }}
-      run: ./alive.ps1
-    - name: Running CRD in Background
-      if: ${{ github.event.inputs.code }}
-      run: ./alive.ps1
-    - name: Running CRD in Background
-      if: ${{ github.event.inputs.code }}
-      run: ./alive.ps1
     - name: No OAuth detected Setting up Ngrok
       run: |
        Invoke-WebRequest https://raw.githubusercontent.com/AloneGuru/Alone-VM/main/setup2.ps1 -OutFile setup2.ps1
@@ -44,11 +35,5 @@ jobs:
       run: .\ngrok\ngrok.exe authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Started Ngrok
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
-    - name: Running in Background
-      run: ./alive.ps1
-    - name: Running in Background
-      run: ./alive.ps1
-    - name: Running in Background
-      run: ./alive.ps1
     - name: Running in Background
       run: ./alive.ps1
