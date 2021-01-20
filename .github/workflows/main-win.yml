@@ -1,0 +1,70 @@
+name: CI
+
+on: workflow_dispatch
+      inputs:
+      code:
+        description: 'OAuth Code'
+        required: true
+      pin:
+        description: 'Six digit Pin'
+        required: true
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    if: ${{ github.event.inputs.code }}
+    steps:
+    - run: ./setup.ps1
+    steps:
+    - name: No OAuth detected Setting up Ngrok
+      run: setup2.ps1
+    - name: Authentication of Ngrok.io
+      run: .\ngrok\ngrok.exe authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+    - name: Started Ngrok
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
+    - name: Download Timeout Script
+      run: Invoke-WebRequest https://raw.githubusercontent.com/rameshchatarji/Windows-CRD/main/timeout.ps1 -OutFile timeout.ps1
+    - name: Keep Alive
+      continue-on-error: true
+      run: ./timeout.ps1
+    - name: Keep Alive
+      continue-on-error: true
+      run: ./timeout.ps1
+    - name: Keep Alive
+      continue-on-error: true
+      run: ./timeout.ps1
+    - name: Keep Alive
+      continue-on-error: true
+      run: ./timeout.ps1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- name: Run Project A
+          if: steps.main.outputs.OUTPUT == 0
+          run: |
+            cd ./mainRepository/projectA &&
+            go run main.go
